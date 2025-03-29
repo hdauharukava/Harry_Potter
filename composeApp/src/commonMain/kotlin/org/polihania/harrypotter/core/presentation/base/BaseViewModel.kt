@@ -1,4 +1,4 @@
-package org.polihania.harrypotter.core.presentation
+package org.polihania.harrypotter.core.presentation.base
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
