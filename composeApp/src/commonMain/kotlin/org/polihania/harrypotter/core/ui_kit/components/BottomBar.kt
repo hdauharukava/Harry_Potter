@@ -17,10 +17,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import coil3.compose.AsyncImage
 import harrypotter.composeapp.generated.resources.Res
-import org.polihania.harrypotter.core.navigation.normalizeRoute
-import org.polihania.harrypotter.feature.main_screen.getBottomNavItems
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
+import org.polihania.harrypotter.core.navigation.BottomNavigationRoutes
+import org.polihania.harrypotter.core.navigation.normalizeRoute
+import org.polihania.harrypotter.feature.main_screen.getBottomNavItems
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
@@ -49,8 +50,10 @@ fun BottomBar(navController: NavController) {
                     selected = isSelected,
                     onClick = {
                         if (!isSelected) {
-                            navController.navigate(item.route::class.qualifiedName!!) {
-                                popUpTo(navController.graph.startDestinationId) {
+                            navController.navigate(
+                                item.route::class.qualifiedName ?: return@NavigationBarItem
+                            ) {
+                                popUpTo(BottomNavigationRoutes.BooksList) {
                                     saveState = true
                                 }
                                 launchSingleTop = true
