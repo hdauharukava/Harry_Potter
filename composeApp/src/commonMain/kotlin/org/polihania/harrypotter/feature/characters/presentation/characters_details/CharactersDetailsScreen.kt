@@ -25,6 +25,7 @@ import harrypotter.composeapp.generated.resources.character_details_interpretedB
 import org.polihania.harrypotter.core.presentation.base.DetailsScreenIntent
 import org.polihania.harrypotter.core.ui_kit.components.DetailsScreenContent
 import org.jetbrains.compose.resources.stringResource
+import org.polihania.harrypotter.core.ui_kit.components.PotterText
 
 @Composable
 fun CharactersDetailsScreen(
@@ -54,7 +55,7 @@ fun CharactersDetailsScreen(
                 is AsyncImagePainter.State.Error -> {}
             }
 
-            Text(
+            PotterText(
                 modifier = Modifier.padding(vertical = 8.dp).fillMaxWidth(),
                 text = characterDetails.fullName,
                 style = MaterialTheme.typography.displayLarge,
