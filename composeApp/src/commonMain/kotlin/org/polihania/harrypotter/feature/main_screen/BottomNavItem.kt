@@ -3,6 +3,7 @@ package org.polihania.harrypotter.feature.main_screen
 
 import androidx.compose.runtime.Immutable
 import harrypotter.composeapp.generated.resources.Res
+import harrypotter.composeapp.generated.resources.about
 import harrypotter.composeapp.generated.resources.books
 import harrypotter.composeapp.generated.resources.characters
 import harrypotter.composeapp.generated.resources.houses
@@ -37,5 +38,10 @@ fun getBottomNavItems(): List<BottomNavItem> = listOf(
         route = BottomNavigationRoutes.SpellsList,
         icon = "files/wand.svg",
         label = Res.string.spells
+    ),
+    BottomNavItem(
+        route = BottomNavigationRoutes.About,
+        icon = "files/about.svg",
+        label = Res.string.about
     )
 )

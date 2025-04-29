@@ -2,6 +2,7 @@ package org.polihania.harrypotter.feature.main_screen
 
 import androidx.compose.runtime.Immutable
 import harrypotter.composeapp.generated.resources.Res
+import harrypotter.composeapp.generated.resources.about
 import harrypotter.composeapp.generated.resources.book_details
 import harrypotter.composeapp.generated.resources.books
 import harrypotter.composeapp.generated.resources.character_details
@@ -26,6 +27,7 @@ fun getTopBarItems(): List<TopBarItem> {
         TopBarItem(BottomNavigationRoutes.CharactersList, Res.string.characters),
         TopBarItem(BottomNavigationRoutes.HousesList, Res.string.houses),
         TopBarItem(BottomNavigationRoutes.SpellsList, Res.string.spells),
+        TopBarItem(BottomNavigationRoutes.About, Res.string.about),
 
         TopBarItem(
             DetailsRoutes.BooksDetails(0),
