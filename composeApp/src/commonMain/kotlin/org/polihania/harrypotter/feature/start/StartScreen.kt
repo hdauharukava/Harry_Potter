@@ -48,6 +48,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.koin.mp.KoinPlatform.getKoin
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.roundToInt
@@ -63,6 +64,18 @@ fun StartScreen(onClick: () -> Unit) {
             repeatMode = RepeatMode.Restart
         )
     )
+
+    val audioPlayer: AudioPlayer = getKoin().get()
+
+    LaunchedEffect(Unit) {
+        audioPlayer.playLooped("dj_theme")
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            audioPlayer.stop()
+        }
+    }
 
     BoxWithConstraints(
         modifier = Modifier.fillMaxSize().background(
@@ -157,7 +170,7 @@ fun RotatingElements(
 
             val hueOffset = rememberAnimatedHueFast(index).value
             val color = Color.hsl(
-                hue = hueOffset,
+                hue = hueOffset % 360f,
                 saturation = 0.8f,
                 lightness = 0.5f
             )
