@@ -35,10 +35,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -139,7 +136,7 @@ fun DiscoCenter(onClick: () -> Unit) {
 fun RotatingElements(
     rotationAngle: Float
 ) {
-    val ringCount = 4
+    val ringCount = 7
     val baseRadius = 120.dp
     val radiusStep = 60.dp
 
@@ -175,49 +172,68 @@ fun RotatingElements(
                 lightness = 0.5f
             )
 
-            Box(
-                modifier = Modifier
-                    .offset { IntOffset(x.roundToInt(), y.roundToInt()) }
-                    .size(40.dp),
-                contentAlignment = Alignment.Center
+            RotationContent(
+                x = x,
+                y = y,
+                index = index,
+                switchStates = switchStates,
+                checkboxStates = checkboxStates,
+                color = color
+            )
+        }
+    }
+}
+
+@Composable
+private fun RotationContent(
+    x: Float,
+    y: Float,
+    index: Int,
+    switchStates: MutableList<Boolean>,
+    checkboxStates: MutableList<Boolean>,
+    color: Color
+) {
+    Box(
+        modifier = Modifier
+            .offset { IntOffset(x.roundToInt(), y.roundToInt()) }
+            .size(40.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        when (index % 4) {
+            0 -> Switch(
+                checked = switchStates[index],
+                onCheckedChange = { switchStates[index] = it },
+                colors = SwitchDefaults.colors(
+                    checkedThumbColor = color,
+                    uncheckedThumbColor = color.copy(alpha = 0.4f)
+                )
+            )
+
+            1 -> Checkbox(
+                checked = checkboxStates[index],
+                onCheckedChange = { checkboxStates[index] = it },
+                colors = CheckboxDefaults.colors(
+                    checkedColor = color,
+                    uncheckedColor = color.copy(alpha = 0.4f)
+                )
+            )
+
+            2 -> Button(
+                onClick = {},
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = color,
+                    contentColor = Color.White
+                ),
+                contentPadding = PaddingValues(4.dp)
             ) {
-                when (index % 4) {
-                    0 -> Switch(
-                        checked = switchStates[index],
-                        onCheckedChange = { switchStates[index] = it },
-                        colors = SwitchDefaults.colors(
-                            checkedThumbColor = color,
-                            uncheckedThumbColor = color.copy(alpha = 0.4f)
-                        )
-                    )
-
-                    1 -> Checkbox(
-                        checked = checkboxStates[index],
-                        onCheckedChange = { checkboxStates[index] = it },
-                        colors = CheckboxDefaults.colors(
-                            checkedColor = color,
-                            uncheckedColor = color.copy(alpha = 0.4f)
-                        )
-                    )
-
-                    2 -> Button(
-                        onClick = {},
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = color,
-                            contentColor = Color.White
-                        ),
-                        contentPadding = PaddingValues(4.dp)
-                    ) {
-                        Text("🎵", fontSize = 12.sp)
-                    }
-
-                    3 -> Icon(
-                        Icons.Default.Star,
-                        contentDescription = null,
-                        tint = color
-                    )
-                }
+                Text("🎵", fontSize = 12.sp)
             }
+
+            3 -> Icon(
+                Icons.Default.Star,
+                contentDescription = null,
+                tint = color
+            )
         }
     }
 }
