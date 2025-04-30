@@ -45,6 +45,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.delay
 import org.koin.mp.KoinPlatform.getKoin
 import kotlin.math.PI
 import kotlin.math.cos
@@ -193,6 +194,16 @@ private fun RotationContent(
     checkboxStates: MutableList<Boolean>,
     color: Color
 ) {
+    LaunchedEffect(index) {
+        while (true) {
+            delay((100..1000).random().toLong())
+            when (index % 4) {
+                0 -> switchStates[index] = !switchStates[index]
+                1 -> checkboxStates[index] = !checkboxStates[index]
+            }
+        }
+    }
+
     Box(
         modifier = Modifier
             .offset { IntOffset(x.roundToInt(), y.roundToInt()) }
