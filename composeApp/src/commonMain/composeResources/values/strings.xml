@@ -34,4 +34,11 @@
     <string name="book_details_number">Book #:</string>
     <string name="book_details_pages">Pages:</string>
     <string name="book_details_releaseDate">Release Date:</string>
+
+    <string name="start_screen_title">Harry Potter</string>
+    <string name="start_screen_description">application for true fans</string>
+    <string name="start_screen_button">Start</string>
+
+    <string name="about_screen_title">Made by PoliHania</string>
+    <string name="about_screen_powered_by">API powered by: %1$s</string>
 </resources>

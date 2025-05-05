@@ -23,9 +23,9 @@ import org.polihania.harrypotter.feature.characters.presentation.characters_list
 import org.polihania.harrypotter.feature.characters.presentation.characters_list.CharactersListViewModel
 import org.polihania.harrypotter.feature.houses.presentation.HousesScreen
 import org.polihania.harrypotter.feature.houses.presentation.HousesViewModel
-import org.polihania.harrypotter.feature.main_screen.MainScreen
 import org.polihania.harrypotter.feature.spells.presentation.SpellsScreen
 import org.polihania.harrypotter.feature.spells.presentation.SpellsViewModel
+import org.polihania.harrypotter.feature.start.LegendaryScreen
 import org.polihania.harrypotter.feature.start.StartScreen
 
 @Composable
@@ -115,8 +115,16 @@ fun NavigationGraph(
             }
 
             composable<BottomNavigationRoutes.About> {
-                AboutScreen()
+                AboutScreen(
+                    goToLegendary = {
+                        navigation.navigateToLegendaryScreen()
+                    }
+                )
             }
+        }
+
+        composable<LegendaryScreenRoute> {
+            LegendaryScreen()
         }
     }
 }

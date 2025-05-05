@@ -11,6 +11,8 @@ interface Navigation {
     fun navigateToCharacterDetails(characterId: Int)
 
     fun navigateToMainScreen()
+
+    fun navigateToLegendaryScreen()
 }
 
 class NavigationImpl : Navigation {
@@ -35,6 +37,12 @@ class NavigationImpl : Navigation {
     override fun navigateToMainScreen() {
         navController.ifNotNull {
             it.navigate(MainScreenNavRoute)
+        }
+    }
+
+    override fun navigateToLegendaryScreen() {
+        navController.ifNotNull {
+            it.navigate(LegendaryScreenRoute)
         }
     }
 }

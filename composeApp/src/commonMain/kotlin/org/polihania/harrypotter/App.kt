@@ -9,6 +9,7 @@ import org.polihania.harrypotter.feature.main_screen.MainScreen
 fun App() {
     PotterTheme(
         house = HogwartsHouse.Ravenclaw,
+        darkTheme = true,
     ) {
         MainScreen()
     }
