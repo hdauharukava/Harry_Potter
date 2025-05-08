@@ -18,6 +18,7 @@ fun koinConfiguration(appDeclaration: KoinAppDeclaration? = null) = startKoin {
         booksModule,
         housesModule,
         spellsModule,
-        charactersModule
+        charactersModule,
+        platformModule
     )
 }

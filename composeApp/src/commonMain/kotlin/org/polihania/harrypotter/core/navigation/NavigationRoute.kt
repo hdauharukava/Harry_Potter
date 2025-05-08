@@ -27,7 +27,19 @@ sealed interface BottomNavigationRoutes : NavigationRoute {
 
     @Serializable
     data object SpellsList : BottomNavigationRoutes
+
+    @Serializable
+    data object About : BottomNavigationRoutes
 }
+
+@Serializable
+data object StartScreenRoute : NavigationRoute
+
+@Serializable
+data object LegendaryScreenRoute : NavigationRoute
+
+@Serializable
+data object MainScreenNavRoute: NavigationRoute
 
 fun normalizeRoute(route: String?): String? {
     return route

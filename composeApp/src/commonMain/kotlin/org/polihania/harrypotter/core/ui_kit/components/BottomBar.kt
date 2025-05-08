@@ -20,6 +20,7 @@ import harrypotter.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import org.polihania.harrypotter.core.navigation.BottomNavigationRoutes
+import org.polihania.harrypotter.core.navigation.LegendaryScreenRoute
 import org.polihania.harrypotter.core.navigation.normalizeRoute
 import org.polihania.harrypotter.feature.main_screen.getBottomNavItems
 
@@ -29,6 +30,8 @@ fun BottomBar(navController: NavController) {
     val items = getBottomNavItems()
     val navBackStackEntry = navController.currentBackStackEntryAsState()
     val currentDestination = normalizeRoute(navBackStackEntry.value?.destination?.route)
+
+    if (currentDestination == LegendaryScreenRoute::class.qualifiedName) return
 
     val isVisible =
         items.any { normalizeRoute(it.route::class.qualifiedName) == currentDestination }
